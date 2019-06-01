@@ -1,8 +1,45 @@
-var api_key = "53efafc18c686b9dcae32b983edb6db4f3ef23d8"
+// var api_key = "53efafc18c686b9dcae32b983edb6db4f3ef23d8"
 
-var city = "beijing"
-var url = `https://api.waqi.info/feed/${city}/?token=${api_key}`
+// var city = "beijing"
+// var url = `https://api.waqi.info/feed/${city}/?token=${api_key}`
 
-d3.json(url).then(function(data){
-    console.log(data);
-});
+// d3.json(url).then(function(data){
+//     console.log(data);
+// });
+
+
+function drawGlobe() {
+
+	var data = [{
+	    type: 'choropleth',
+	    locationmode: 'country names',
+	    autocolorscale: false,
+	    reversescale: true,
+	    colorscale: [
+		    [0, 'rgb(0, 0, 139)'],
+		    [1, 'rgb(144, 238, 144)']
+	    ]
+    }];
+
+    var layout = {
+	    geo: {
+		    showocean: true,
+		    oceancolor: 'rgba(74,128,245, 0.5)',
+		    showlakes: true,
+		    lakecolor: 'rgba(74,128,245, 0.5)',
+		    showland: true,
+		    landcolor: 'rgb(64, 64, 64)',
+		    mapframe: false,
+    
+	    projection: {
+		    type: 'orthographic'
+	    },
+	    bgcolor:"rgba(0,0,0,0)",
+	    },
+	    paper_bgcolor: 'rgba(0,0,0,0)',
+    
+    };
+
+    Plotly.newPlot('globe', data, layout, {showLink: false},{responsive: true});
+}
+    drawGlobe();
