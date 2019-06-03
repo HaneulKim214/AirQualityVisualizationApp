@@ -2,6 +2,9 @@ html {
     scroll-behavior: smooth;
 }
 
+.aqi-table tbody tr td {
+    padding-right: 25px;
+}
 .first-page {
     background: linear-gradient(
                 rgba(0,0,0,0.4),
@@ -14,7 +17,6 @@ html {
 }
 
 .header {
-    margin-top:20%;
     color: aliceblue;
     font-family: 'Times New Roman', Times, serif;
 }
@@ -22,56 +24,12 @@ html {
     font-size: 320%;
 }
 
-div {
-    resize:both;
-    overflow: auto;
-}
 
 .header p {
     font-size:130%;
     /* font-family: 'Courier New', Courier, monospace; */
 }
 
-.main-section {
-    margin: 0 auto;
-    height: 100%;
-}
-
-#charts {
-    height:500px;
-}
-
-.modal-content{
-    background-color: rgb(216, 222, 236);
-    opacity: 0.8;
-    border-radius: 15px;
-    padding-bottom: 10px;
-    padding-top:10px;
-}
-.form-group input {
-    border-radius: 15px;
-    font-size: 18px;
-}
-
-div .user-img img {
-    height: 180px;
-    width: 160px;
-    padding-bottom: 20px;
-}
-
-/* Change color of place holder of text type. */
-input[type="text"]::placeholder{
-    color: black;
-}
-
-/* button color */
-.btn-success {
-    background-color: brown;
-    border-radius: 5px;
-    border: black;
-}
-
-.btn-success:hover {
-    background-color: rgb(128, 27, 27);
-    border: black;
+.description{
+    color: aliceblue;
 }
