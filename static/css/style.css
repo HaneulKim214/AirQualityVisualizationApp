@@ -31,5 +31,12 @@ html {
 }
 
 .description{
-    color: aliceblue;
+    color: black;
+}
+
+
+/* choropleth Globe */
+
+.main-svg {
+    height: 800px;
 }

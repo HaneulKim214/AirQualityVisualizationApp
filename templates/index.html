@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Air-Quality</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.2/d3.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/css/style.css">
+    
+  
+    <script type='text/javascript' src='http://d3js.org/d3.v3.min.js'></script>
+    <script type='text/javascript' src='http://d3js.org/topojson.v1.min.js'></script>
 
     <!-- My on scrape for lists -->
     <script>
@@ -17,54 +19,37 @@
 </head>
 
 <body>
-    <div class="first-page">
-        <div class="header text-center">
-            <br>
-            <br>
-            <br>
-            <h1>World Air Quality data</h1>
-
-            <br>
-            <br>
-            <br>
-            <p>Interative app providing real-time air quality data and 
-                few tips on how to remedy problem.
-            </p>
-        </div>
-
-        <!-- Modal-dialog: allow for it to show on top of background -->
-        <div class="modal-dialog text-center">
-            <!-- box for 3-D globe -->
-            <div id="globe" class="row"></div>
-        </div>
-
-        <div class="description text-center" style="overflow-x:auto;">
-            <p>For all of the pollutant PPM is measurment unit.</p>
-            <table class="aqi-table" align="center">
-              Pollutants that have greatest effect on AQI.
-              <thead>
-                <td>PM2.5</td>
-                <td>PM10</td>
-                <td>O3</td>
-                <td>NO2</td>
-                <td>SO2</td>
-                <td>CO</td>
-              </thead>
-              <tbody>
-                <tr>
-                    <td>placeholder</td>
-                    <td>placeholder</td>
-                    <td>placeholder</td>
-                    <td>placeholder</td>
-                    <td>placeholder</td>
-                    <td>placeholder</td>
-                </tr>
-              </tbody>
-              </table>
-        </div>
+    <div class="text-center main">
+        <canvas id='globe' width='700' height='700'></canvas>
     </div>
-
-    <script src="../static/js/choropleth_globe.js"></script>
+    
+    <div class="description text-center" style="overflow-x:auto;">
+        <p>For all of the pollutant PPM is measurment unit.</p>
+        <table class="aqi-table" align="center">
+          Pollutants that have greatest effect on AQI.
+          <thead>
+            <td>PM2.5</td>
+            <td>PM10</td>
+            <td>O3</td>
+            <td>NO2</td>
+            <td>SO2</td>
+            <td>CO</td>
+          </thead>
+          <tbody>
+            <tr>
+                <td>placeholder</td>
+                <td>placeholder</td>
+                <td>placeholder</td>
+                <td>placeholder</td>
+                <td>placeholder</td>
+                <td>placeholder</td>
+            </tr>
+          </tbody>
+          </table>
+    </div>
+    <script type='text/javascript' src='../static/js/planetaryjs.min.js'></script>
+    <script src="../static/js/config.js"></script>
+    <script src="../static/js/draw_globe.js"></script>
     <script src="../static/js/app.js"></script>
 </body>
 </html>
