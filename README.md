@@ -22,6 +22,6 @@ are to benefit our lives which are seriously impacting the world right now. I ho
 **Programs and Libraries used:**
 - Main code: Python(pandas, flask, )
 - Visualization: javascript(jQuery, d3, plotly, leaflet, planetary), advanced css3(keyframe, transitions), html5, bootstrap4
-- Database: MongoDB, Realtime API from[aqicn.org](aqicn.org)
+- Database: MongoDB, Realtime data retrived [HERE](aqicn.org) using API call.
 
 :bear:
