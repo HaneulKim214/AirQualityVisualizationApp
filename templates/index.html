@@ -7,7 +7,11 @@
     <title>Air-Quality</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/css/style.css">
-    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+    <!-- full clip for landing page slideshow & JQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="../static/js/fullclip.js"></script>
   
     <script type='text/javascript' src='http://d3js.org/d3.v3.min.js'></script>
     <script type='text/javascript' src='http://d3js.org/topojson.v1.min.js'></script>
@@ -19,11 +23,23 @@
 </head>
 
 <body>
-    <div class="text-center main">
-        <canvas id='globe' width='700%' height='700%'></canvas>
+    <div class="landing">
+        <div class="fullBackground"></div>
+        <h2 class="caption1">The future is now</h2>
+        <h2 class="caption2">안녕 곰돌이</h2>
+        <h2 class="caption3">안녕 정한나</h2>
+        <h2 class="caption4">는 바보 통쿠멍</h2>
+        <h2 class="caption5">은 구라야 사랑해</h2>
+      </div>
+    
+    <div class="inside">
+    <canvas id='globe' width='700%' height='700%'></canvas>
     </div>
     
-    <div class="description text-center" style="overflow-x:auto;">
+
+
+
+    <!-- <div class="description text-center" style="overflow-x:auto;">
         <p>For all of the pollutant PPM is measurment unit.</p>
         <table class="aqi-table" align="center">
           Pollutants that have greatest effect on AQI.
@@ -46,7 +62,17 @@
             </tr>
           </tbody>
           </table>
-    </div>
+    </div> -->
+
+    <!-- For slideshow -->
+    <script>
+        $('.fullBackground').fullClip({
+          images: ['../static/images/house.jpg', '../static/images/road.jpg', '../static/images/winter.jpg', '../static/images/1.jpg', '../static/images/2.jpg'],
+          transitionTime: 1000,
+          wait: 5000 // waiting for 5s
+        });
+    </script>
+
     <script type='text/javascript' src='../static/js/planetaryjs.min.js'></script>
     <script src="../static/js/config.js"></script>
     <script src="../static/js/draw_globe.js"></script>
