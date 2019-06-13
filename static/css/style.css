@@ -6,10 +6,10 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-  }
+}
+
   
-  
-  .fullBackground {
+.fullBackground {
     background-position: center center;
     background-attachment: fixed;
     background-size: cover;
@@ -18,143 +18,146 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-  }
+}
   
   
-  /* ----------------------- Caption 1 --------------------- */
-  .caption1 {
+/* ----------------------- Caption 1 --------------------- */
+.caption1 {
     font-size: 30pt;
     text-transform: uppercase;
-color: #fff;
-position: absolute;
-top: 50%; 
-left: 50%;
-transform: translate(-50%, -50%);
-/* disapper after 25/5s and stay invisible until next iter */
-animation-name: caption1;
-animation-duration:25s;
-animation-iteration-count: infinite;
+    color: #fff;
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* disapper after 25/5s and stay invisible until next iter */
+    animation-name: caption1;
+    animation-duration:25s;
+    animation-iteration-count: infinite;
 }
 
 /* only visible for 6s then wait 24s until corresponding img show up again! */
 @keyframes caption1{
-0% {opacity: 0;}
-5%, 18% {opacity:1;} /* 5 ~ 20*/
-25%, 100% {opacity: 0;}
+    0% {opacity: 0;}
+    5%, 18% {opacity:1;} /* 5 ~ 20*/
+    25%, 100% {opacity: 0;}
 }
 
 
 /* ----------------------- Caption 2 --------------------- */
 /* For 2nd caption, appear on second image */
 .caption2 {
-opacity: 0;
-font-size: 30pt;
-text-transform: uppercase;
-color: #fff;
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
+    opacity: 0;
+    font-size: 30pt;
+    text-transform: uppercase;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-animation-name: caption2;
-animation-duration:25s;
-animation-iteration-count: infinite;
+    animation-name: caption2;
+    animation-duration:25s;
+    animation-iteration-count: infinite;
 }
 
 /* Similar to caption1 but appear when caption1 ends */
 @keyframes caption2{
-0%, 20% {opacity: 0;}
+    0%, 20% {opacity: 0;}
 
-30%, 40% {opacity: 1;}
+    30%, 40% {opacity: 1;}
 
-45%, 100% {opacity: 0;} /* go back to invi */
+    45%, 100% {opacity: 0;} /* go back to invi */
 }
 
 /* ----------------------- Caption 3 --------------------- */
 .caption3 {
-opacity: 0;
-font-size: 30pt;
-text-transform: uppercase;
-color: #fff;
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
+    opacity: 0;
+    font-size: 30pt;
+    text-transform: uppercase;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-animation-name: caption3;
-animation-duration:25s;
-animation-iteration-count: infinite;
+    animation-name: caption3;
+    animation-duration:25s;
+    animation-iteration-count: infinite;
 }
 
 /* Similar to caption1 but appear when caption1 ends */
 @keyframes caption3{
-0%, 40% {opacity: 0;}
+    0%, 40% {opacity: 0;}
 
-45%, 60% {opacity: 1;}
+    45%, 60% {opacity: 1;}
 
-65%, 100% {opacity: 0;} /* go back to invi */
+    65%, 100% {opacity: 0;} /* go back to invi */
 }
 
 /* ----------------------- Caption 4 --------------------- */
 .caption4 {
-opacity: 0;
-font-size: 30pt;
-text-transform: uppercase;
-color: #fff;
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
+    opacity: 0;
+    font-size: 30pt;
+    text-transform: uppercase;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-animation-name: caption4;
-animation-duration:25s;
-animation-iteration-count: infinite;
+    animation-name: caption4;
+    animation-duration:25s;
+    animation-iteration-count: infinite;
 }
 
 /* Similar to caption1 but appear when caption1 ends */
 @keyframes caption4{
-0%, 60% {opacity: 0;}
+    0%, 60% {opacity: 0;}
 
-65%, 80% {opacity: 1;}
+    65%, 80% {opacity: 1;}
 
-85%, 100% {opacity: 0;} /* go back to invi */
+    85%, 100% {opacity: 0;} /* go back to invi */
 }
 
 /* ----------------------- Caption 5 --------------------- */
 .caption5 {
-opacity: 0;
-font-size: 30pt;
-text-transform: uppercase;
-color: #fff;
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
+    opacity: 0;
+    font-size: 30pt;
+    text-transform: uppercase;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-animation-name: caption5;
-animation-duration:25s;
-animation-iteration-count: infinite;
+    animation-name: caption5;
+    animation-duration:25s;
+    animation-iteration-count: infinite;
 }
 
 /* Similar to caption1 but appear when caption1 ends */
 @keyframes caption5{
-80% {opacity: 0;}
+    80% {opacity: 0;}
 
-85%, 100% {opacity: 1;}
+    85%, 100% {opacity: 1;}
 }
 
 
 /* ----------------- Second Part (Globe) -------------- */
 
   
+/* ---------------------Q: How to make this responsive? ------------ */
 .inside {
-position: relative;
-top: 1100px; /* ---------------------Q: How to make this responsive? ------------ */
+    position: absolute;
+    margin-top: 150px;
+    top: 100%;
+    width: 100%;
 }
 
 .inside #globe {
     position: relative;
-    margin-left: 32%;
+    margin-left: 30%;
 }
 
 /* --------------------- Media Queries --------------------- */
@@ -163,4 +166,25 @@ top: 1100px; /* ---------------------Q: How to make this responsive? -----------
         width: 100%;
         height: 100%;
     }
+}
+
+
+
+/* -------------------- ArrowDown ---------------- */
+.ArrowDown{
+    position: absolute;
+    margin-top: 59%;
+    left: 50%;
+}
+
+.ArrowDown img {
+    width: 40px;
+    height: 40px;
+}
+.textAboveArrow {
+    position: absolute;
+    margin-top: 55.7%;
+    left: 48.3%;
+    font-size: 1.5em;
+    color: aliceblue;
 }
