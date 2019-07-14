@@ -1,27 +1,21 @@
-// var api_key = "53efafc18c686b9dcae32b983edb6db4f3ef23d8"
-// // Loop through each cities in canada and perform API call
-// var Cities = [];
-// var AQI = [];
-// canadian_cities.forEach(function(city){
-// 	var url = `https://api.waqi.info/feed/${city}/?token=${api_key}`
-	
-// 	// call api
-// 	d3.json(url).then(function(response){
-// 		// ignore calls with status:error => no station in that city
-// 		if (response.status == "ok"){
-// 			console.log(response);
-			
-// 			// Create array of Cities, AQI,
-// 			Cities.push(city);
-// 			console.log(Cities);
-// 		};
-// 	});
-// });
 
+var country_lat_lng = [56.1304, -106.3468]
 
-// function from draw_globe.js that draws 3-d globe
-// drawGlobe();
+var heatmap = L.map("map", {
+  center: country_lat_lng, //center depends on user input country
+  zoom: 5
+});
 
+L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+  attribution: "Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>",
+  maxZoom: 18,
+  id: "mapbox.streets",
+  accessToken: leaflet_api
+}).addTo(heatmap);
 
-// from js api call --> pass it to python and save it into db --> grab data from different
-// js function
+var heat_array = [[56.133, 30.5, 0.2],
+[56.6, 30.4, 0.5]]
+
+// var heat = L.heatLayer(heat_array,{
+  //     radius: 25
+  //     }).addTo(heatmap);

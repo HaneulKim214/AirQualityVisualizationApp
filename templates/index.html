@@ -1,91 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Air-Quality</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Air-Quality</title>
+  <!-- my css -->
+  <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+  <link rel="stylesheet" href="../static/css/base.css">
+  <!-- <link rel="stylesheet" href="../static/css/main.css"> -->
 
-    <!-- full clip for landing page slideshow & JQuery -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="../static/js/fullclip.js"></script>
-  
-    <script type='text/javascript' src='http://d3js.org/d3.v3.min.js'></script>
-    <script type='text/javascript' src='http://d3js.org/topojson.v1.min.js'></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
-    <!-- My on scrape for lists -->
-    <!-- <script>
-        var canadian_cities = {{canada_cities|tojson}};
-    </script> -->
+  <!-- full clip for landing page slideshow & JQuery -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="../static/js/fullclip.js"></script>
+
+  <script type='text/javascript' src='http://d3js.org/d3.v3.min.js'></script>
+  <script type='text/javascript' src='http://d3js.org/topojson.v1.min.js'></script>
+
+  <!-- leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+
+  <!-- received data from python and putting in a script therefore js can use it. -->
+  <!-- <script>
+      var canadian_cities = {{canada_cities|tojson}};
+      var pop = {{pop|tojson}};
+  </script> -->
 </head>
 
 <body>
-
-  <div class="landing">
+  <!-- <div class="landing">
     <div class="fullBackground"></div>
     <h2 class="caption1">The future is now</h2>
     <h2 class="caption2">안녕 곰돌이</h2>
     <h2 class="caption3">안녕 정한나</h2>
     <h2 class="caption4">는 바보 통쿠멍</h2>
     <h2 class="caption5">은 구라야 사랑해</h2>
+  </div> -->
 
-    <!-- ArrowDown Icon -->
-    <p class="textAboveArrow">Explore</p>
-    
-    <div class="ArrowDown">
-      <a href="#page2">
-        <img src="../static/images/ArrowDown.png" alt="">
-      </a>
-    </div>
-    
+  <div class="searchbar">
+    <form>
+        <fieldset>
+          <legend>YOUR COUNTRY</legend>
+          <div class="inner-form">
+            <div class="input-field">
+              <input class="form-control" id="user_country" type="text" placeholder="Type to search..." />
+              
+              <button class="btn-search" type="button" id="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+              </button>
+              
+            </div>
+          </div>
+          
+          <div class="suggestion-wrap">
+            <span>AQI</span>
+            <span>pm25</span>
+            <span>O3</span>
+            <span>NO2</span>
+          </div>
+        </fieldset>
+      </form>
   </div>
+
+  <div id="map">
+  </div>
+
+
+  <!-- For slideshow -->
+  <script>
+      $('.fullBackground').fullClip({
+        images: ['../static/images/house.jpg', '../static/images/road.jpg', '../static/images/winter.jpg', '../static/images/1.jpg', '../static/images/2.jpg'],
+        transitionTime: 1000,
+        wait: 5000 // waiting for 5s
+      });
+  </script>
   
-  <div class="inside" id = "page2">
-    <canvas id='globe' width='700%' height='700%'></canvas>
-  </div>
+  <script src="../static/db/countries_cities.js"></script>
 
-
-
-    <!-- <div class="description text-center" style="overflow-x:auto;">
-        <p>For all of the pollutant PPM is measurment unit.</p>
-        <table class="aqi-table" align="center">
-          Pollutants that have greatest effect on AQI.
-          <thead>
-            <td>PM2.5</td>
-            <td>PM10</td>
-            <td>O3</td>
-            <td>NO2</td>
-            <td>SO2</td>
-            <td>CO</td>
-          </thead>
-          <tbody>
-            <tr>
-                <td>placeholder</td>
-                <td>placeholder</td>
-                <td>placeholder</td>
-                <td>placeholder</td>
-                <td>placeholder</td>
-                <td>placeholder</td>
-            </tr>
-          </tbody>
-          </table>
-    </div> -->
-
-    <!-- For slideshow -->
-    <script>
-        $('.fullBackground').fullClip({
-          images: ['../static/images/house.jpg', '../static/images/road.jpg', '../static/images/winter.jpg', '../static/images/1.jpg', '../static/images/2.jpg'],
-          transitionTime: 1000,
-          wait: 5000 // waiting for 5s
-        });
-    </script>
-
-    <script type='text/javascript' src='../static/js/planetaryjs.min.js'></script>
-    <script src="../static/js/config.js"></script>
-    <script src="../static/js/draw_globe.js"></script>
-    <script src="../static/js/app.js"></script>
+  <script src="../static/js/config.js"></script>
+  <script src="../static/js/beijing_api.js"></script>
+  <script src="../static/js/app.js"></script>
+  <script src="../static/js/searchbar.js"></script>
+  <!-- <script src="../static/js/leaflet-heat.js"></script> -->
 </body>
 </html>
