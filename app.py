@@ -16,6 +16,8 @@ def index():
     """Return the homepage."""
     return render_template("index.html")
 
+@app.route("/cities/<list_of_cities>")
+
     
 if __name__ == "__main__":
     app.run(debug=True)

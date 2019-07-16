@@ -2,7 +2,7 @@ var country_search = d3.select("#submit")
 
 country_search.on("click", function(){
     d3.event.preventDefault();
-
+    
     var user_input_country = d3.select("#user_country").node().value;
     
     const splitted = user_input_country.split(" ");
@@ -27,6 +27,7 @@ country_search.on("click", function(){
         // title case if only one word.
         var list_of_cities = countries_cities[user_input_country]
         
+        cities(list_of_cities);
         console.log(result(list_of_cities, get_aqi));
     }
     else{
