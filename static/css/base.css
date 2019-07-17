@@ -46,3 +46,11 @@ html {
     margin-left: 10%;
     font-weight: 400;
 }
+
+/* ----------------- Country Summary -------------------- */
+.country_summ {
+    height: 100%;
+    justify-content: center;
+    text-align: center;
+    
+}

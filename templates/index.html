@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Air-Quality</title>
+
+  <!--  Animate on Scroll cdn-->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
   <!-- my css -->
-  <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
   <link rel="stylesheet" href="../static/css/base.css">
   <!-- <link rel="stylesheet" href="../static/css/main.css"> -->
 
@@ -15,7 +18,6 @@
 
   <!-- full clip for landing page slideshow & JQuery -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script src="../static/js/fullclip.js"></script>
 
   <script type='text/javascript' src='http://d3js.org/d3.v3.min.js'></script>
   <script type='text/javascript' src='http://d3js.org/topojson.v1.min.js'></script>
@@ -68,19 +70,37 @@
       </form>
   </div>
 
+  <div class="country_summ">
+    <div>
+      <p data-aos="fade-right" data-aos-delay="50" data-aos-duration="2000">
+        Lorem ipsum dolor sit amet consectetur adipisicing
+         elit. Ut molestiae tempore obcaecati, provident quasi eligendi a
+         b eum quo quam eosillum iusto velit laborum animi possimus veritatis 
+         saepe cum ea! 
+      </p>
+         <br>
+         <br>
+      <p data-aos="flip-left" data-aos-delay="50" data-aos-duration="2000">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus 
+        'aspernatur nemo dolores iure debitis magnam, ut placeat facere optio per
+        spiciatis voluptates consequatur dolor labore, modi necessitatibus magni m
+        llitia minus itaque.
+      </p>
+      <br>
+      <br>
+      <br>
+      <p data-aos="zoom-in-right" data-aos-delay="50" data-aos-duration="2000">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe dignissimos fugiat sapiente sed ipsum voluptate nemo facilis harum aliquid doloremque unde totam, vero tempora odio obcaecati aspernatur libero inventore aut.</p>
+    </div>
+  </div>
+
+
   <div id="map">
   </div>
 
 
-  <!-- For slideshow -->
-  <script>
-      $('.fullBackground').fullClip({
-        images: ['../static/images/house.jpg', '../static/images/road.jpg', '../static/images/winter.jpg', '../static/images/1.jpg', '../static/images/2.jpg'],
-        transitionTime: 1000,
-        wait: 5000 // waiting for 5s
-      });
-  </script>
-  
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script> AOS.init()</script> <!-- initialize-->
   <script src="../static/db/countries_cities.js"></script>
 
   <script src="../static/js/config.js"></script>
