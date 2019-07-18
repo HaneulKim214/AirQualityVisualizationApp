@@ -8,7 +8,7 @@ import requests
 import sqlalchemy
 import time
 
-# connect to db names 'aqi_db'
+# connect to db named 'aqi_db'
 engine = sqlalchemy.create_engine('mysql+pymysql://root:Gksmf12#@localhost:3306/aqi_db')
 
 # loading json file into data variable
@@ -25,8 +25,14 @@ def get_aqi(city):
         response = requests.get(url).json()
         if response['status'] == 'ok':
             aqi_list.append(response["data"]["aqi"])
-        else:
-            aqi_list.append(None)
+        else: # call is successful however get error status
+
+            # error log for succesful call w/o right data.
+            try:
+                print(f'{response["status"]} because of {response["message"]}')
+                aqi_list.append(None)
+            except:
+                pass
     except:
         time.sleep(5)
 
