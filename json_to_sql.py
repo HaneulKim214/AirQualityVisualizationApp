@@ -40,6 +40,7 @@ chainer = chain.from_iterable
 countries_cities_df = pd.DataFrame.from_dict({'Countries':list(chainer(repeat(k, len(v)) for k,v in data.items())),
                             'Cities':list(chainer(data.values()))})
 
+################# WHAT TO DO: call get_aqi function and if error/no station, delete that row.
 for index, row in countries_cities_df.iterrows():
     city = countries_cities_df["Cities"].values[index]
     get_aqi(city)
