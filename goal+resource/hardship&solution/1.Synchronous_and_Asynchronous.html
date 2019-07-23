@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Synchronous and Asynchronous functions in JS</title>
+</head>
+<script>
+    // Callback function example
+    let add = function(a,b){
+        return a + b
+    }
+
+    let calculate = function(a,b, callback){
+        return callback(a,b);
+    }
+
+    // sending a,b and which function to use.
+    // will work from inside out.
+    console.log(calculate(2,3,add));
+
+
+    // Timeout examples
+
+
+
+</script>
+<body>
+    <h1>Synchronous and Asynchronous Functions in JS</h1>
+    <br>
+    <p>Most functions in JS are Synchronous</p>
+    <p><b>Synchronous:</b> functions follow flow control => first function is executed first.</p>
+
+    <hr>
+    <h3>Callback</h3>
+    <p>Sometime you want to change Synchronous to Asynchronous and vice versa, it can be done using <b>Callback</b> functions</p>
+    <div>
+        <p>
+            Answer from stackoverflow
+        </p>
+        <img src="images/img1.jpg" alt="">
+    </div>
+
+    <hr>
+    <div class="Timeout">
+        <h3>Timeout</h3>
+        <p><b>Timeout</b> function has same use case. It is used to give timeout to certain function => function will execute after certain time given by programmer(in milliseconds)</p>
+    </div>
+
+</body>
+</html>

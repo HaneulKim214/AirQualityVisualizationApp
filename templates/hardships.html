@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/hardships/hardship_home.css">
+</head>
+<body>
+    <div class="header">
+        <p>During project I've faced many problems, since it took a while to get a grasp of the problem and lot of research I've decided to write about it therefore I don't
+            struggle as much on same problems. In the link it will cover:
+            <ol class="header-list">
+                <li>What am I trying to achieve?</li>
+                <li>Uh oh, problem</li>
+                <li>My thoughts on what is happening</li>
+                <li>How I solved it</li>
+            </ol>
+        </p>
+    </div>
+    <div class="content">
+        <a href="#js"><p>Changing asynchronous function to follow synchronous flow in JavaScript</p></a>
+        <a href="#hardship2"><p>Hardship2</p></a>
+        <a href="#hardship3"><p>Hardship3</p></a>
+        <a href="#hardship4"><p>Hardship4</p></a>
+    </div>
+
+    <div class="jumbotron hardship1" id="js">
+        <h4>Changing asynchronous function to follow synchronous flow in JavaScript</h4>
+        <p class="ol">1. What I want to acheive</p>
+        <p>When user inputs a country name, plan was to clean the input to match certain format so it can be used to get value from json. There were two cases: one word country(ex: Canada, Italy, etc.)
+            and countries that had "and", "or" in between them (ex: Republic of Korea). I needed to title case country names therefore 
+            whether user inputs "CANADA", "canada" it will become "Canada" and search correctly in json file. 
+        </p>
+        <p class="ol">2. Uh oh, problem</p>
+        <p>In JavaScript functions are either synchronous or asynchronous. It is considered to be synchronous if it 
+            follows flow of code, function written on top of the code gets executed first 
+            and the opposite for asynchronous.</p>
+        <pre>
+            var country_search = d3.select("#submit")
+            country_search.on("click", function(){
+                d3.event.preventDefault();
+                var user_input_country = d3.select("#user_country").node().value;
+                splitted = user_input_country.split(" ");
+                if (splitted.length === 1){
+                    cleaned_input = user_input_country.charAt(0).toUpperCase() + user_input_country.slice(1).toLowerCase()
+                }
+                else{
+                    for (var i=0; i (less than) splitted.length; i++) { 
+                        if (splitted[i] != "of" && splitted[i] !="and"){
+                            splitted[i] = splitted[i].charAt(0).toUpperCase() + splitted[i].slice(1).toLowerCase()
+                        }
+                    }
+                    cleaned_input = splitted.join(" ")
+                }
+
+            })
+
+            function call_api(cleaned_input){
+                console.log(clenaed_input)
+            }
+        </pre>
+        <p class="ol">3. What is happening?</p>
+        <p>The problem was that since the code was aynchronous when script runs it will run them all at the same time therefore function call_api
+            would not wait until cleaning process finishes leading to undefined "cleaned_input" error. Therefore needed to find a way to clean the input then send it through another function.
+            In order to achieve this there was need to change the functions to become synchronous.
+        </p>
+
+        <p class="ol">4. How I fixed it.</p>
+        <p>In JavaScript functions can be passed in as a argument therefore we can create a function then pass it as an argument of another function. There are two possible solutions which are using:
+            <br>&nbsp &nbsp &nbsp i. Callback function <br>&nbsp &nbsp &nbsp ii. Timeout<br>
+            Timeout is simply telling a function to take a timeout until another function is being processed.<br>
+            This time I've used callback function to remedy the problem.
+        </p>
+        <pre>
+            var country_search = d3.select("#submit")
+            country_search.on("click", function(){
+                d3.event.preventDefault();
+                var user_input_country = d3.select("#user_country").node().value;
+                d3.select("#user_country").node().value = "";
+
+                clean_format(user_input_country, function(cleaned_input){
+                    console.log(`successfuly changed -> ${cleaned_input}`)
+                })
+            });
+
+            function clean_format(user_input_country, callback){
+                const splitted = user_input_country.split(" ");
+                if (splitted.length === 1){
+                    cleaned_input = user_input_country.charAt(0).toUpperCase() + user_input_country.slice(1).toLowerCase()
+                }
+                else{
+                    for (var i=0; i (less than) splitted.length; i++) {
+                        if (splitted[i] != "of" && splitted[i] !="and"){
+                            splitted[i] = splitted[i].charAt(0).toUpperCase() + splitted[i].slice(1).toLowerCase()
+                        }
+                    }
+                    cleaned_input = splitted.join(" ")
+                }
+                callback(cleaned_input);
+            }
+        </pre>
+        <p>In the function that is being excetued upon "click" you can see that clean_format function 
+            is being called at the end. Note that in clean_format there are two parameters, country name that
+            user inputs(user_input_country) and a function. Here is where the magic happens, the function being 
+            passed in as a parameter does not get executed it is called inside clean_format function.
+            Therefore when clean_format is executed it cleans user_input_country and at the end, calls callback function
+            with cleaned_input as a parameter. Finally it will execute the callback function acheiving 
+            synchronous flow.
+        </p>
+        <a href="#" class="to-top">back to top</a>
+    </div>
+
+
+    <!-- Hardship #2 -->
+    <div class="hardship2" id="hardship2">
+
+    </div>
+
+    <!-- Hardship #3 -->
+    <div class="hardship3" id="hardship3">
+
+    </div>
+
+    <!-- Hardship #4 -->
+    <div class="hardship4" id="hardship4">
+
+    </div>
+</body>
+</html>

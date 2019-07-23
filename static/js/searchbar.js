@@ -4,36 +4,35 @@ country_search.on("click", function(){
     d3.event.preventDefault();
     
     var user_input_country = d3.select("#user_country").node().value;
-    
-    const splitted = user_input_country.split(" ");
-
     d3.select("#user_country").node().value = "";
     
+    // this runs clean_format function with user_input then runs callback func.
+    clean_format(user_input_country, function(cleaned_input){
+        console.log(`successfuly changed -> ${cleaned_input}`)
+
+        d3.json(`/cities/${cleaned_input}`, function(error, response){
+            console.log(`what's returned from python API ${response}`)
+        })
+    })
+});
+
+function clean_format(user_input_country, callback){
+    const splitted = user_input_country.split(" ");
+    // if no space in country name
     if (splitted.length === 1){
-        var user_input_country = user_input_country.charAt(0).toUpperCase() + user_input_country.slice(1).toLowerCase()
+        cleaned_input = user_input_country.charAt(0).toUpperCase() + user_input_country.slice(1).toLowerCase()
     }
+    // if space --> titlecase all other than of/and,...etc.
     else{
-        for (var i=0; i <splitted.length; i++) {
+        for (var i=0; i <splitted.length; i++) { 
             // titlecase except for the word "of"
-            if (splitted[i] != "of"){
+            if (splitted[i] != "of" && splitted[i] !="and"){
                 splitted[i] = splitted[i].charAt(0).toUpperCase() + splitted[i].slice(1).toLowerCase()
             }
         }
-        var user_input_country = splitted.join(" ")
-    };
-    
-    // countries_cities = {countr1:[1,2,3,4,], countr2:[1,2,3,4,],...}
-    if (countries_cities[user_input_country]){
-        // title case if only one word.
-        var list_of_cities = countries_cities[user_input_country]
-        
-        cities(list_of_cities);
-        console.log(result(list_of_cities, get_aqi));
+        cleaned_input = splitted.join(" ")
     }
-    else{
-        alert("Try different word for your country name.")
-    };
 
-    // // Sending variable to python 
-    // search(cities);
-})
+    // after above step, run call back function()
+    callback(cleaned_input);
+}

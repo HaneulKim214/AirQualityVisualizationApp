@@ -1,0 +1,35 @@
+.header {
+    text-align: center;
+}
+
+.header-list{
+    text-align: center;
+    list-style-position: inside;
+}
+
+.content{
+    margin: 300px;
+    text-align: center;
+}
+
+.hardship1 h4{
+    font-weight: 100;
+}
+
+.to-top{
+    list-style: none;
+    color: blue;
+}
+
+.to-top:hover{
+    color: rgb(98, 190, 98);
+}
+
+pre{
+    background-color: azure;
+    color: rgb(133, 49, 49);
+}
+
+.ol {
+    font-weight: 500;
+}

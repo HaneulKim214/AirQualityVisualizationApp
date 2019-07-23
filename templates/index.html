@@ -25,24 +25,9 @@
   <!-- leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
-
-  <!-- received data from python and putting in a script therefore js can use it. -->
-  <!-- <script>
-      var canadian_cities = {{canada_cities|tojson}};
-      var pop = {{pop|tojson}};
-  </script> -->
 </head>
 
 <body>
-  <!-- <div class="landing">
-    <div class="fullBackground"></div>
-    <h2 class="caption1">The future is now</h2>
-    <h2 class="caption2">안녕 곰돌이</h2>
-    <h2 class="caption3">안녕 정한나</h2>
-    <h2 class="caption4">는 바보 통쿠멍</h2>
-    <h2 class="caption5">은 구라야 사랑해</h2>
-  </div> -->
-
   <div class="searchbar">
     <form>
         <fieldset>
@@ -97,15 +82,18 @@
   <div id="map">
   </div>
 
+  <div class="jumbotron" style="text-align: center;">
+    <!-- calling /hardships -->
+    <a href="{{ url_for('hardships') }}"><b>hardships</b></a>
+  </div>
 
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script> AOS.init()</script> <!-- initialize-->
-  <script src="../static/db/countries_cities.js"></script>
+  <script> AOS.init()</script>
 
   <script src="../static/js/config.js"></script>
   <script src="../static/js/app.js"></script>
-  <script src="../static/js/aqi.js"></script>
+  <!-- <script src="../static/js/aqi.js"></script> -->
   <script src="../static/js/searchbar.js"></script>
   <!-- <script src="../static/js/leaflet-heat.js"></script> -->
 </body>
