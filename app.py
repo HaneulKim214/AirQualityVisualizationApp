@@ -11,13 +11,14 @@ from sqlalchemy import create_engine, func
 
 #my dependencies
 from air_quality_api import get_aqi
+from nlp import text_summarize
 
 
 app = Flask(__name__)
 
 # ---------------------------------- Database setup -------------------------------- #
 # setting up which database I will use
-app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://root:Gksmf12#@localhost:3306/aqi_db'
+app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://root:Gksmf12#@localhost:3306/aqi_db'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # # Creating database instance
@@ -27,26 +28,25 @@ db = SQLAlchemy(app)
 # Creating table. class name = table name
 class Aqi(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    Country = db.Column(db.String(30), unique=True)
-    City = db.Column(db.String(30), unique=True)
-    Aqi = db.Column(db.Integer)
+    Country = db.Column(db.String(30))
+    City = db.Column(db.String(50))
+    Aqi = db.Column(db.String(10))
     lat = db.Column(db.Float)
     lng = db.Column(db.Float)
+    time = db.Column(db.DateTime)
 
-    def __init__(self, Country, City, Aqi, lat, lng):
+    def __init__(self, Country, City, Aqi, lat, lng, time):
         self.Country = Country
         self.City = City
         self.Aqi = Aqi
         self.lat = lat
         self.lng = lng
+        self.time = time
 
     # ????????????? declare how query is outputted.
     def __repr__(self):
         return f"Aqi('{self.Countries}', '{self.Cities}', '{self.aqi}')"
 
-# example = Aqi("Canada", "Trontn", 23, 123.3, 12.2)
-# db.session.add(example)
-# db.session.commit()
 # x = Aqi.query.filter_by(Cities="Willowdale").all()
 # print(x[0])
 # ------------------------------------ Database setup end --------------------------------- #
@@ -58,6 +58,10 @@ def index():
     """Return the homepage."""
     return render_template("index.html")
 
+@app.route("/nlp/<country>")
+def nlp(country):
+    print(f'nlp works {country}')
+    pass
 
 @app.route("/cities/<country>")
 def cities(country):
@@ -67,26 +71,37 @@ def cities(country):
     3. store into db
     4. return {city:[], aqi:[], lat_lng:[a,b]} so heat map can be made.
     """
-    # openning json file in python.
     with open('static/db/final_cities_countries.json') as f:
         data = json.load(f)
 
-    # list of cities for inputted country.
-    list_of_cities = data[country]
-    for city in list_of_cities:
+    # if data exists grab data, if not query again and store into db, then grab data
+    query = db.select([Aqi]).where(Aqi.Country == country)
+    result = db.engine.execute(query).fetchall()
+    if len(result) < 1:
+        list_of_cities = data[country]
+        for city in list_of_cities:
+            # store into db if aqi_call is ONLY successful with status:ok
+            if get_aqi(city) != None:
+                aqi_response = get_aqi(city)
+                lat = aqi_response['data']['city']['geo'][0]
+                lng = aqi_response['data']['city']['geo'][1]
+                time = aqi_response['data']['time']['s']
 
-        # store into db if aqi_call is successful with status:ok
-        if get_aqi(city) != None:
-            aqi_response = get_aqi(city)
-            lat = aqi_response['data']['city']['geo'][0]
-            lng = aqi_response['data']['city']['geo'][1]
+                #creating instance of Aqi class(row in MySQL table) and inserting into db
+                aqi_data = Aqi(country, city, aqi_response['data']['aqi'], lat, lng, time)
+                db.session.add(aqi_data)
+                db.session.commit()
+        # this time it will have more  
+        query = db.select([Aqi]).where(Aqi.Country == country)
+        result = db.engine.execute(query).fetchall()
+    
+    # with inputted country, text summarize.
+    # country_summary = text_summarize(country)
 
-            #creating instance of Aqi class(row in table MySQL) and insert to db
-            aqi_data = Aqi(country, city, aqi_response['data']['aqi'], lat, lng)
-            db.session.add(aqi_data)
-            db.session.commit()
 
-    return country
+    # sending back list of dictionaries. [{aqi:x, city:y, ..}, {},{},...]
+    return jsonify([dict(row) for row in result])
+
 
 @app.route("/hardships")
 def hardships():

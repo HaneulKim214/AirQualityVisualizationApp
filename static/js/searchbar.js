@@ -11,7 +11,9 @@ country_search.on("click", function(){
         console.log(`successfuly changed -> ${cleaned_input}`)
 
         d3.json(`/cities/${cleaned_input}`, function(error, response){
-            console.log(`what's returned from python API ${response}`)
+
+            // send it to markermap function to create a map
+            markermap(response)
         })
     })
 });
@@ -25,7 +27,7 @@ function clean_format(user_input_country, callback){
     // if space --> titlecase all other than of/and,...etc.
     else{
         for (var i=0; i <splitted.length; i++) { 
-            // titlecase except for the word "of"
+            // titlecase if word is not "of" or "and"
             if (splitted[i] != "of" && splitted[i] !="and"){
                 splitted[i] = splitted[i].charAt(0).toUpperCase() + splitted[i].slice(1).toLowerCase()
             }

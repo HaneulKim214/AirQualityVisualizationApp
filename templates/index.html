@@ -5,26 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Air-Quality</title>
-
-  <!--  Animate on Scroll cdn-->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
   <!-- my css -->
   <link rel="stylesheet" href="../static/css/base.css">
   <!-- <link rel="stylesheet" href="../static/css/main.css"> -->
 
+  <!--  Animate on Scroll cdn-->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-
-  <!-- full clip for landing page slideshow & JQuery -->
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-
   <script type='text/javascript' src='http://d3js.org/d3.v3.min.js'></script>
   <script type='text/javascript' src='http://d3js.org/topojson.v1.min.js'></script>
 
   <!-- leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+
+  <!-- MarkerClusterGroup cdn -->
+  <script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.0.3/dist/leaflet.markercluster.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.Default.css">
+
 </head>
 
 <body>
@@ -79,7 +80,7 @@
   </div>
 
 
-  <div id="map">
+  <div class = "map-div" id="map" data-aos="zoom-in" data-aos-duration="2000">
   </div>
 
   <div class="jumbotron" style="text-align: center;">
@@ -92,9 +93,9 @@
   <script> AOS.init()</script>
 
   <script src="../static/js/config.js"></script>
-  <script src="../static/js/app.js"></script>
-  <!-- <script src="../static/js/aqi.js"></script> -->
+  <script src="../static/js/map.js"></script>
   <script src="../static/js/searchbar.js"></script>
-  <!-- <script src="../static/js/leaflet-heat.js"></script> -->
+  <!-- <script src="../static/js/aqi.js"></script> -->
+  <script src="../static/js/leaflet-heat.js"></script>
 </body>
 </html>

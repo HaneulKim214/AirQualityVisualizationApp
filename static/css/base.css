@@ -8,6 +8,14 @@ body,
 html {
     height: 100%;
 }
+/* -------------------Heat Map ------------------- */
+.map-div{
+    margin: 5%;
+    border-radius: 5%;
+}
+
+/* -------------------Heat Map ENDS ------------------- */
+
 
 .searchbar{
     display: flex;
