@@ -8,13 +8,14 @@ country_search.on("click", function(){
     
     // this runs clean_format function with user_input then runs callback func.
     clean_format(user_input_country, function(cleaned_input){
-        console.log(`successfuly changed -> ${cleaned_input}`)
-
+        // two api calls: 1. for marker map  2. for nlp
         d3.json(`/cities/${cleaned_input}`, function(error, response){
-
-            // send it to markermap function to create a map
             markermap(response)
-        })
+        });
+        d3.json(`/nlp/${cleaned_input}`, function(error, summarized_text){
+            // when you get text summary, render it to appropriate <p></p>
+            RenderTextSummary(summarized_text);
+        });
     })
 });
 

@@ -37,7 +37,7 @@
             <div class="input-field">
               <input class="form-control" id="user_country" type="text" placeholder="Type to search..." />
               
-              <button class="btn-search" type="submit" id="submit">
+              <button class="btn-search" type="submit" id="submit" onclick="document.getElementById('summary').scrollIntoView();">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                   <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
                 </svg>
@@ -56,30 +56,11 @@
       </form>
   </div>
 
-  <div class="country_summ">
-    <div>
-      <p data-aos="fade-right" data-aos-delay="50" data-aos-duration="2000" data-aos-offset="150">
-        Lorem ipsum dolor sit amet consectetur adipisicing
-         elit. Ut molestiae tempore obcaecati, provident quasi eligendi a
-         b eum quo quam eosillum iusto velit laborum animi possimus veritatis 
-         saepe cum ea! 
-      </p>
-         <br>
-         <br>
-      <p data-aos="flip-left" data-aos-delay="50" data-aos-duration="2000">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus 
-        'aspernatur nemo dolores iure debitis magnam, ut placeat facere optio per
-        spiciatis voluptates consequatur dolor labore, modi necessitatibus magni m
-        llitia minus itaque.
-      </p>
-      <br>
-      <br>
-      <br>
-      <p data-aos="zoom-in-right" data-aos-delay="50" data-aos-duration="2000">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe dignissimos fugiat sapiente sed ipsum voluptate nemo facilis harum aliquid doloremque unde totam, vero tempora odio obcaecati aspernatur libero inventore aut.</p>
-    </div>
+  <!-- add summary of country into <p> using js d3 -->
+  <div class="text-summarize" id="summary">
   </div>
 
-
+  <!-- ------------------- MAP ---------------------- -->
   <div class = "map-div" id="map" data-aos="zoom-in" data-aos-duration="2000">
   </div>
 
@@ -94,6 +75,7 @@
 
   <script src="../static/js/config.js"></script>
   <script src="../static/js/map.js"></script>
+  <script src="../static/js/render_to_html.js"></script>
   <script src="../static/js/searchbar.js"></script>
   <!-- <script src="../static/js/aqi.js"></script> -->
   <script src="../static/js/leaflet-heat.js"></script>

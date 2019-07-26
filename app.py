@@ -11,7 +11,7 @@ from sqlalchemy import create_engine, func
 
 #my dependencies
 from air_quality_api import get_aqi
-from nlp import text_summarize
+from summarize_text import *
 
 
 app = Flask(__name__)
@@ -59,9 +59,11 @@ def index():
     return render_template("index.html")
 
 @app.route("/nlp/<country>")
-def nlp(country):
-    print(f'nlp works {country}')
-    pass
+def text_summarization(country):
+    # check if in NoSQL db. if not, call text_summarize function and store it into db then use
+    # that db to retrieve info and send it to JS.
+    summarized_text = text_summarizer(country)
+    return jsonify(summarized_text)
 
 @app.route("/cities/<country>")
 def cities(country):
@@ -94,10 +96,6 @@ def cities(country):
         # this time it will have more  
         query = db.select([Aqi]).where(Aqi.Country == country)
         result = db.engine.execute(query).fetchall()
-    
-    # with inputted country, text summarize.
-    # country_summary = text_summarize(country)
-
 
     # sending back list of dictionaries. [{aqi:x, city:y, ..}, {},{},...]
     return jsonify([dict(row) for row in result])
@@ -106,5 +104,8 @@ def cities(country):
 @app.route("/hardships")
 def hardships():
     return render_template('hardships.html')
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
