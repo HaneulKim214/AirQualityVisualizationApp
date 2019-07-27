@@ -1,5 +1,4 @@
 function markermap(response){
-  console.log(response);
 
   var map_center = [response[0]["lat"], response[0]['lng']]
   

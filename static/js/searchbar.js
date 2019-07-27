@@ -10,15 +10,21 @@ country_search.on("click", function(){
     clean_format(user_input_country, function(cleaned_input){
         // two api calls: 1. for marker map  2. for nlp
         d3.json(`/cities/${cleaned_input}`, function(error, response){
+            map = d3.select("")
+
             markermap(response)
         });
         d3.json(`/nlp/${cleaned_input}`, function(error, summarized_text){
+            // empty DOM element before rendering new country
+            div = d3.select(".text-summarize");
+            div.selectAll("p").remove();
+            div.selectAll("h3").remove();
+            
             // receive summarized text from python
+            RenderTitle(cleaned_input);                
+            RenderURL(cleaned_input);
             RenderTextSummary(summarized_text);
         });
-
-        RenderURL(cleaned_input);
-        RenderTitle(cleaned_input);                
     })
 });
 
