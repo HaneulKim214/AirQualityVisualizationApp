@@ -13,9 +13,12 @@ country_search.on("click", function(){
             markermap(response)
         });
         d3.json(`/nlp/${cleaned_input}`, function(error, summarized_text){
-            // when you get text summary, render it to appropriate <p></p>
+            // receive summarized text from python
             RenderTextSummary(summarized_text);
         });
+
+        RenderURL(cleaned_input);
+        RenderTitle(cleaned_input);                
     })
 });
 
