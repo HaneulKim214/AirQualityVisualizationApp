@@ -45,3 +45,12 @@ function RenderTitle(country_name){
                 return d;
             });
 };
+
+function RenderMap(){
+    data = [1]
+    d3.select("map-container").selectAll("div")
+            .data(data)
+            .enter()
+            .append("div")
+            .attr("id", "map");
+}
