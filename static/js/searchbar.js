@@ -16,7 +16,6 @@ country_search.on("click", function(){
             // // create div with id=map inside .map-container before we input map inside of it.
             RenderMap();
             
-
             // run markermap function after 3s.
             setTimeout(function(){ markermap(response) }, 3000); // this inserts map in to tag that has id="map"
         });

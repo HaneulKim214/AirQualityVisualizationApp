@@ -47,8 +47,6 @@ class Aqi(db.Model):
     def __repr__(self):
         return f"Aqi('{self.Countries}', '{self.Cities}', '{self.aqi}')"
 
-# x = Aqi.query.filter_by(Cities="Willowdale").all()
-# print(x[0])
 # ------------------------------------ Database setup end --------------------------------- #
 
 
@@ -90,19 +88,16 @@ def cities(country):
                 time = aqi_response['data']['time']['s']
 
                 # creating instance of Aqi class(row in MySQL table) and inserting into aqi table
-                aqi_data = Aqi(country, city, aqi_response['data']['aqi'], lat, lng, time)
-                db.session.add(aqi_data)
+                insert_to_db = Aqi(country, city, aqi_response['data']['aqi'], lat, lng, time)
+                db.session.add(insert_to_db)
                 db.session.commit()
-
-    else"
-    
         # this time it will have more  
         query = db.select([Aqi]).where(Aqi.Country == country)
 
         # result = [(id, country, city,...), (id, country, city,...), ...etc.]
         result = db.engine.execute(query).fetchall()
     
-    # sending back list of dictionaries. [{id:x, country:y, city:z,...}, {},{},...]
+    # sending back list of dictionaries. [{id:x, country:y, city:z, etc...}, {},{},...]
     return jsonify([dict(row) for row in result])
 
 
