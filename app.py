@@ -100,11 +100,26 @@ def cities(country):
                 time = aqi_response['data']['time']['s']
                  
                 # Top 5 pollutants
-                o3 = aqi_response['data']['iaqi']['o3']['v']
-                so2 = aqi_response['data']['iaqi']['so2']['v']
-                no2 = aqi_response['data']['iaqi']['no2']['v']
-                pm25 = aqi_response['data']['iaqi']['pm25']['v'] #pm2.5
-                co = aqi_response['data']['iaqi']['co']['v']
+                try:
+                    o3 = aqi_response['data']['iaqi']['o3']['v']
+                except:
+                    o3 = -1
+                try:
+                    so2 = aqi_response['data']['iaqi']['so2']['v']
+                except:
+                    so2 = -1
+                try:
+                    no2 = aqi_response['data']['iaqi']['no2']['v']
+                except:
+                    no2 = -1
+                try:
+                    pm25 = aqi_response['data']['iaqi']['pm25']['v'] #pm2.5
+                except:
+                    pm25 = -1
+                try:
+                    co = aqi_response['data']['iaqi']['co']['v']
+                except:
+                    co = -1
 
                 # creating instance of Aqi class(row in MySQL table) and inserting into aqi table
                 insert_to_db = Aqi(country, city, aqi_response['data']['aqi'], o3, so2, no2, pm25, co, lat, lng, time)

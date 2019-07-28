@@ -15,11 +15,14 @@ def gather_text(country):
 
     # all texts are embedded within <p> tags for any wikipedia article
     paragraphs = soup.find_all("p")
-    article = ""
+    paragraph = ""
     for p in paragraphs:
-        article += p.text # only grabbing text inside <p> tags
+        paragraph += p.text # only grabbing text inside <p> tags
 
-    sentences = nltk.sent_tokenize(article)
+    return paragraph
+
+def para_to_sents(paragraph):
+    sentences = nltk.sent_tokenize(paragraph)
     return sentences
 
 def cleanSentence(sent):

@@ -8,8 +8,9 @@ def text_summarizer(country):
     1. nlp
     2. leveraging DL/ML
     """
-    # organize text from wikipedia and create tokenize to list of sentence
-    sentences = gather_text(country)
+    # organize text from wikipedia by joining all <p> tags and tokenize to list of sentences
+    paragraph = gather_text(country)
+    sentences = para_to_sents(paragraph)
     total_sentences = len(sentences)
     sentences = [cleanSentence(sent) for sent in sentences] #clean each sentence and store back into a list.
     

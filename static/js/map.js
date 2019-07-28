@@ -33,11 +33,14 @@ for (var i = 0; i < response.length; i++) {
 
   // L.marker([response[i]["lat"], response[i]["lng"]],{icon: co_2Icon}).addTo(marker_map);
   markers.addLayer(L.marker([response[i]["lat"], response[i]["lng"]], {icon: co_2Icon})
-                  .bindPopup("<p>" + `City = ${response[i]["City"]}<br>
-                  Air quality index = ${response[i]["Aqi"]}<br>
-                  Time = ${response[i]["time"]}</p>`+
-                  `<p> o3 = ${o3}
-                  </p>`)                
+                  .bindPopup(`<p>City = ${response[i]["City"]}<br>` +
+                  `Air quality index = ${response[i]["Aqi"]}<br>` +
+                  `Time = ${response[i]["time"]}</p>` +
+                  `<p> o3 = ${o3}</p>`+
+                  `<p> so2 = ${so2}</p>`+
+                  `<p> no2 = ${no2}</p>`+
+                  `<p> pm25 = ${pm25}</p>`+
+                  `<p> co = ${co}</p>`)                
   );
 };
 marker_map.addLayer(markers);
