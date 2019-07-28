@@ -31,14 +31,26 @@ class Aqi(db.Model):
     Country = db.Column(db.String(30))
     City = db.Column(db.String(50))
     Aqi = db.Column(db.String(10))
+
+    o3 = db.Column(db.Float)
+    so2 = db.Column(db.Float)
+    no2 = db.Column(db.Float)
+    pm25 = db.Column(db.Float)
+    co = db.Column(db.Float)
+
     lat = db.Column(db.Float)
     lng = db.Column(db.Float)
     time = db.Column(db.DateTime)
 
-    def __init__(self, Country, City, Aqi, lat, lng, time):
+    def __init__(self, Country, City, Aqi,o3, so2, no2, pm25, co, lat, lng, time):
         self.Country = Country
         self.City = City
         self.Aqi = Aqi
+        self.o3 = o3
+        self.so2 = so2
+        self.no2 = no2
+        self.pm25 = pm25
+        self.co = co
         self.lat = lat
         self.lng = lng
         self.time = time
@@ -86,14 +98,21 @@ def cities(country):
                 lat = aqi_response['data']['city']['geo'][0]
                 lng = aqi_response['data']['city']['geo'][1]
                 time = aqi_response['data']['time']['s']
+                 
+                # Top 5 pollutants
+                o3 = aqi_response['data']['iaqi']['o3']['v']
+                so2 = aqi_response['data']['iaqi']['so2']['v']
+                no2 = aqi_response['data']['iaqi']['no2']['v']
+                pm25 = aqi_response['data']['iaqi']['pm25']['v'] #pm2.5
+                co = aqi_response['data']['iaqi']['co']['v']
 
                 # creating instance of Aqi class(row in MySQL table) and inserting into aqi table
-                insert_to_db = Aqi(country, city, aqi_response['data']['aqi'], lat, lng, time)
+                insert_to_db = Aqi(country, city, aqi_response['data']['aqi'], o3, so2, no2, pm25, co, lat, lng, time)
                 db.session.add(insert_to_db)
                 db.session.commit()
+
         # this time it will have more  
         query = db.select([Aqi]).where(Aqi.Country == country)
-
         # result = [(id, country, city,...), (id, country, city,...), ...etc.]
         result = db.engine.execute(query).fetchall()
     

@@ -9,7 +9,7 @@ def get_aqi(city):
         if response['status'] == 'ok':
             # aqi data if api call successful
             return response
-        else: # case where call is successful with error status
+        else: # case where call is successful but error status
             return None
     except:
         return None

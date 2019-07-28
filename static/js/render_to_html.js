@@ -46,7 +46,7 @@ function RenderTitle(country_name){
             });
 };
 
-function RenderMap(){
+function CreateMapTag(){
     // data = ["ph1", "ph2", "ph3"]
     d3.select(".map-container")
             .append("div")
