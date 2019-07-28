@@ -10,11 +10,15 @@ country_search.on("click", function(){
     clean_format(user_input_country, function(cleaned_input){
         // two api calls: 1. for marker map  2. for nlp
         d3.json(`/cities/${cleaned_input}`, function(error, response){
-            // create div with id=map before we input map inside of it.
-            // RenderMap();
+            map = d3.select(".map-container")
+            console.log(map)
+            map.selectAll("div").remove();
+            // // create div with id=map inside .map-container before we input map inside of it.
+            RenderMap();
             
-            console.log(response);
-            markermap(response); // this inserts map in to tag that has id="map"
+
+            // run markermap function after 3s.
+            setTimeout(function(){ markermap(response) }, 3000); // this inserts map in to tag that has id="map"
         });
         d3.json(`/nlp/${cleaned_input}`, function(error, summarized_text){
             // empty DOM element before rendering new country

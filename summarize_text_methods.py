@@ -158,15 +158,10 @@ def AverageScore(sentence_score):
 
 def summarize(sentences, sentence_score, threshold):
     """
-    With given threshold summarize with sentences that go over it.
-    Each sentence will be joined by "." and it will be returned as one string
+    With given threshold summarize with sentences that are above threshold.
+    Each sentence will be joined by ". " and period at the end, it will be returned as one string
     """
-    sentence_count = 0
-    summary = ""
-    for sentence in sentences:
-        if sentence in sentence_score and sentence_score[sentence] >= threshold:
-            summary += "." + sentence
-            sentence_count += 1
-
+    sentences = [sentence.strip() for sentence in sentences if sentence in sentence_score and sentence_score[sentence] >= threshold]
+    summary = ". ".join(sentences) + "."
     # print(f'from {total_docs} sentences summarized to {sentence_count} sentences with threshold point of {threshold}')
     return summary

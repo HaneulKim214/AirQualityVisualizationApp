@@ -47,10 +47,8 @@ function RenderTitle(country_name){
 };
 
 function RenderMap(){
-    data = [1]
-    d3.select("map-container").selectAll("div")
-            .data(data)
-            .enter()
+    // data = ["ph1", "ph2", "ph3"]
+    d3.select(".map-container")
             .append("div")
             .attr("id", "map");
 }

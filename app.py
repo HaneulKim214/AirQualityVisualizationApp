@@ -89,22 +89,26 @@ def cities(country):
                 lng = aqi_response['data']['city']['geo'][1]
                 time = aqi_response['data']['time']['s']
 
-                #creating instance of Aqi class(row in MySQL table) and inserting into db
+                # creating instance of Aqi class(row in MySQL table) and inserting into aqi table
                 aqi_data = Aqi(country, city, aqi_response['data']['aqi'], lat, lng, time)
                 db.session.add(aqi_data)
                 db.session.commit()
+
+    else"
+    
         # this time it will have more  
         query = db.select([Aqi]).where(Aqi.Country == country)
-        result = db.engine.execute(query).fetchall()
 
-    # sending back list of dictionaries. [{aqi:x, city:y, ..}, {},{},...]
+        # result = [(id, country, city,...), (id, country, city,...), ...etc.]
+        result = db.engine.execute(query).fetchall()
+    
+    # sending back list of dictionaries. [{id:x, country:y, city:z,...}, {},{},...]
     return jsonify([dict(row) for row in result])
 
 
 @app.route("/hardships")
 def hardships():
     return render_template('hardships.html')
-
 
 
 if __name__ == "__main__":
