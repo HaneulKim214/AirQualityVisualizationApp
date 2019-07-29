@@ -56,6 +56,40 @@ html {
     bottom: 50%;
 }
 
+.understand {
+    height: 100%;
+    right: 2%;
+    position: relative;
+    color: #505962;
+}
+.understand .heading {
+    position: absolute;
+    left: 42%;
+    bottom: 80%;
+}
+.understand #question {
+    position: absolute;
+    left: 43%;
+    bottom: 68%;
+}
+
+.understand .infos {
+    position: absolute;
+    bottom: 20%;
+    margin-left: 5%;
+    /* margin-top: 100px; */
+}
+.understand .infos #info-1 {
+    font-weight: 700;
+}
+
+
+.container {
+    padding-right: 0;
+    padding-left: 0;
+    /* margin:0; why does this shift all to lefT? */
+}
+
 
 /* First page Air pollutant info ENDS */
 
@@ -134,6 +168,19 @@ html {
     .who-data4 {
         visibility: hidden;
     }
+    .heading, #question, .infos{
+        position: fixed;
+    }
+    .infos{
+        transform: translateY(30%);
+    }
+    .understand .heading {
+        left: 30%;
+    }
+    .understand #question {
+        left: 31%;
+    }
+    
 }
 
 @media (max-width: 576px){
@@ -163,4 +210,11 @@ html {
         left: 16%;
         top: 40%;
     }
+    .understand .heading {
+        left: 26%;
+    }
+    .understand #question {
+        left: 27%;
+    }
+    
 }

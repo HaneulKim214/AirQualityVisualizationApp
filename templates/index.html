@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Air-Quality</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
   <!--  Animate on Scroll cdn-->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <!-- Mine, since it needs to style after animation -->
   <link rel="stylesheet" href="../static/css/base.css">
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script type='text/javascript' src='http://d3js.org/d3.v3.min.js'></script>
   <script type='text/javascript' src='http://d3js.org/topojson.v1.min.js'></script>
@@ -84,6 +84,52 @@
         </h3>
       </div>
   </div>
+
+  <div class="understand">
+    <h2 class="heading" data-aos="fade-down" data-aos-duration="3000">Understand, then Act</h2>
+
+    <p id="question" data-aos="fade-up" data-aos-duration="3000">
+      What are cause of air pollution?<br>
+      How are they emitted?
+    </p>
+
+    <div class="infos row">
+      <div class="col-md-4">
+        <p id="info-1" data-aos="flip-left" data-aos-duration="3000">
+          From researching multiple resources conluded with five major pollutants that led to air pollution.
+          They are ground-level ozone, particulate matter, nitrogen dioxide, sulfur oxide and carbon monoxide.
+        </p>
+      </div>
+
+      <div class="col-md info info-2" data-aos="flip-left" data-aos-duration="3000"data-aos-delay="1000">
+          <p>Ozone can be separated into ground-level ozone and natural ozone layer. While 
+            natural ozone layer surrounds our earth and help regulate temperature and 
+            protect us from ultra violet rays emitted from the sun, ground-level is major
+            pollutant. Ground level ozone are generated from mixing of nitrogen oxide and 
+            volatile organic compounds which leads to various health problems. Asthma, bronchitis, 
+            and emphysema are common related upper respiratory ailments related ground-level ozone.
+            All major pollutants are result of human activity such as burning fossil fuels, 
+          and CO2 emitted by our vehicles. Major concerns in most country has been with 
+          particulate matter which is mixture of sulphate, nitrate, ammonia, sodium chloride,
+          carbon, mineral dust, and water.
+          </p>
+      </div>
+
+      <div class="col-md info info-3" data-aos="flip-left" data-aos-duration="3000" data-aos-delay="2000">
+        <p> 
+          There are PM2.5 and PM10, number refers to their 
+          aerodynamic diameter, PM2.5 are particulate matters that have aerodynamic diameter 
+          less than 2.5 micro meters. For those not surprised, average size of human hair is 
+          60 micro meter and this is why PM2.5 is most dangerous pollutant. Due to its small 
+          aerodynamic diamter it is able to reach deep into our lungs and other organs interfering
+          with gas exchange. Exposure to these increase the risk for cardiovascular and respiratory
+          diseases such as asthma and lung cancer.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
 
   <!-- add summary of country into <p> within <div> using js d3 -->
   <div class="text-summarize" id="summary">
