@@ -159,6 +159,11 @@ html {
 }
 
 /* ----------- Media Query for phones & Tablet ------------- */
+@media (max-width: 1115px){
+    .infos{
+        transform: translateY(35%);
+    }
+}
 
 @media (max-width: 768px){
     .text-summarize {
