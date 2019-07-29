@@ -21,9 +21,49 @@ html {
 
 /* -------------------Heat Map ENDS ------------------- */
 
+
+/* First page Air pollutant info */
+.who-container {
+    height: 85%;
+    position: relative;
+}
+.who-data1{
+    position: absolute;
+    opacity: 0.58;
+    color: rgb(207, 104, 104);
+    left: 20%;
+    top: 20%;
+}
+.who-data2 {
+    position: absolute;
+    color: #505962;
+    opacity: 0.58;
+    left: 49%;
+    bottom: 15%;
+}
+.who-data3 {
+    position: absolute;
+    color: #505962;
+    opacity: 0.58;
+    left: 74%;
+    bottom: 56%;
+}
+.who-data4 {
+    position: absolute;
+    color: #505962;
+    opacity: 0.58;
+    left: 40%;
+    bottom: 50%;
+}
+
+
+/* First page Air pollutant info ENDS */
+
 .searchbar{
     display: flex;
-    min-height: 100vh;
+    width: 100%;
+    height: 100%;
+    /* min-height: 100vh; */
     align-items: center;
     justify-content: center;
     transform: translateY(-2%); /*move up tiny bit*/
@@ -36,12 +76,13 @@ html {
     font-weight: 800;
     text-align: center;
     margin-bottom: 30px;
+    transform: translateX(10px);
 }
 
 .searchbar form .form-control{
     border-radius: 15px;
     transform: translateX(-20%);
-    width: 170%;
+    width: 195%;
 }
 
 /* search Button */
@@ -55,7 +96,8 @@ html {
 }
 
 .pollutant-info {
-    overflow: hidden;
+    /* overflow: hidden; */
+    text-align: center;
     white-space: nowrap;
 }
 .pollutant-info span{
@@ -89,11 +131,36 @@ html {
         margin: 0 50px;
         margin-bottom: 75px;
     }
+    .who-data4 {
+        visibility: hidden;
+    }
 }
 
 @media (max-width: 576px){
     .text-summarize {
         margin: 0 10px;
         margin-bottom:75px;
+    }
+    .searchbar form .form-control{
+        border-radius: 15px;
+        transform: translateX(-20%);
+        width: 175%;
+    }
+    
+    /* search Button */
+    .searchbar form .btn-search{
+        width: 70px;
+        outline: none; /* Gets rid of border when clicked*/
+        background: transparent;
+        border: 0; /* getting rid of bordering*/
+        transform: translate(415%, -120%);
+        height: 100%;
+    }
+    .who-data1{
+        position: absolute;
+        opacity: 0.58;
+        color: rgb(207, 104, 104);
+        left: 16%;
+        top: 40%;
     }
 }
