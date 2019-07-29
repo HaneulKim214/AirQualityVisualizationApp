@@ -70,8 +70,9 @@ def index():
 
 @app.route("/nlp/<country>")
 def text_summarization(country):
-    # check if in NoSQL db. if not, call text_summarize function and store it into db then use
-    # that db to retrieve info and send it to JS.
+    """
+    For inputted country, grab its paragraphs from wikipedia and summarize it.
+    """
     summarized_text = text_summarizer(country)
     return jsonify(summarized_text)
 
@@ -95,10 +96,13 @@ def cities(country):
             # store into db if aqi_call is ONLY successful with status:ok
             if get_aqi(city) != None:
                 aqi_response = get_aqi(city)
-                lat = aqi_response['data']['city']['geo'][0]
-                lng = aqi_response['data']['city']['geo'][1]
                 time = aqi_response['data']['time']['s']
-                 
+                try:
+                    lat = aqi_response['data']['city']['geo'][0]
+                    lng = aqi_response['data']['city']['geo'][1]
+                except:
+                    continue # skipping city that have no defined coordinates.
+
                 # Top 5 pollutants
                 try:
                     o3 = aqi_response['data']['iaqi']['o3']['v']

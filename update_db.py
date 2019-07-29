@@ -5,25 +5,25 @@ import time
 import atexit
 from apscheduler.schedulers.background import BackgroundScheduler
 
-# def update_aqi():
-#     """
-#     Every 24 hours, update aqi, time column for each city with api_received response
-#     """
-#     query = db.select([Aqi.id, Aqi.City])
-#     result = db.engine.execute(query).fetchall()
-#     for each_city in result:
-#         current_city = each_city[1]
-#         current_id = each_city[0]
-#         aqi_response = get_aqi(current_city)
-#         returned_aqi_data = aqi_response['data']['aqi']
-#         returned_time = aqi_response['data']['time']['s']
+def update_aqi():
+    """
+    Every 24 hours, update aqi, time column for each city with api_received response
+    """
+    query = db.select([Aqi.id, Aqi.City])
+    result = db.engine.execute(query).fetchall()
+    for each_city in result:
+        current_city = each_city[1]
+        current_id = each_city[0]
+        aqi_response = get_aqi(current_city)
+        returned_aqi_data = aqi_response['data']['aqi']
+        returned_time = aqi_response['data']['time']['s']
 
-#         update_this = Aqi.query.filter_by(id=current_id).first()
-#         update_this.Aqi = returned_aqi_data
-#         update_this.time = returned_time
-#         db.session.commit()
+        update_this = Aqi.query.filter_by(id=current_id).first()
+        update_this.Aqi = returned_aqi_data
+        update_this.time = returned_time
+        db.session.commit()
 
-#     pass
+    pass
 
 
 
