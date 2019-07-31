@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request, redirect, render_template
+from flask_apscheduler import APScheduler
 from flask_sqlalchemy import SQLAlchemy
 import json
 import os
@@ -8,13 +9,18 @@ import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
+import time
 
 #my dependencies
 from air_quality_api import get_aqi
 from summarize_text import *
 
 
+
 app = Flask(__name__)
+scheduler = APScheduler()
+scheduler.init_app(app)
+scheduler.start()
 
 # ---------------------------------- Database setup -------------------------------- #
 # setting up which database I will use
@@ -60,7 +66,6 @@ class Aqi(db.Model):
         return f"Aqi('{self.Countries}', '{self.Cities}', '{self.aqi}')"
 
 # ------------------------------------ Database setup end --------------------------------- #
-
 
 # Pass list of canadian cities to app.js where it can call api for each cities.
 @app.route("/")
@@ -128,7 +133,10 @@ def cities(country):
                 # creating instance of Aqi class(row in MySQL table) and inserting into aqi table
                 insert_to_db = Aqi(country, city, aqi_response['data']['aqi'], o3, so2, no2, pm25, co, lat, lng, time)
                 db.session.add(insert_to_db)
-                db.session.commit()
+                try:
+                    db.session.commit()
+                except:
+                    continue
 
         # this time it will have more  
         query = db.select([Aqi]).where(Aqi.Country == country)
@@ -142,6 +150,29 @@ def cities(country):
 @app.route("/hardships")
 def hardships():
     return render_template('hardships.html')
+
+
+# Auto update MySQL DB every 24hours. --> runs parallely.
+@scheduler.task('interval', id="update_aqi", hours=1)
+def update_aqi():
+    """
+    Every 24 hours, update aqi, time column for each city with api_received response
+    """ 
+    query = db.select([Aqi.id, Aqi.City])
+    result = db.engine.execute(query).fetchall()
+    for each_city in result:
+        current_city = each_city[1]
+        current_id = each_city[0]
+        aqi_response = get_aqi(current_city)
+        returned_aqi_data = aqi_response['data']['aqi']
+        returned_time = aqi_response['data']['time']['s']
+
+        update_this = Aqi.query.filter_by(id=current_id).first()
+        update_this.Aqi = returned_aqi_data
+        update_this.time = returned_time
+        db.session.commit()
+
+    return f"updated at {time.strftime('%Y/%m/%d, %H:%M%S')}"
 
 
 if __name__ == "__main__":
