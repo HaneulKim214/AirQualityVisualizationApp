@@ -22,13 +22,13 @@
     </div>
     <div class="content">
         <a href="#js"><p>Changing asynchronous function to follow synchronous flow in JavaScript</p></a>
-        <a href="#hardship2"><p>Scheduling database update every 24 hours</p></a>
+        <a href="#hardship2"><p>Automating MySQL database update every 24 hours</p></a>
         <a href="#hardship3"><p>Hardship3</p></a>
         <a href="#hardship4"><p>Hardship4</p></a>
     </div>
 
     <!-- Synchronous Starts HERE -->
-    <div class="jumbotron hardship1" id="js">
+    <div class="jumbotron hardships hardship-1" id="js">
         <h4>Changing asynchronous function to follow synchronous flow in JavaScript</h4>
         <p class="ol">1. What I want to acheive</p>
         <p>When user inputs a country name, plan was to clean the input to match certain format so it can be used to get value from json. There were two cases: one word country(ex: Canada, Italy, etc.)
@@ -117,8 +117,115 @@
 
 
     <!-- Hardship #2 -->
-    <div class="hardship2" id="hardship2">
+    <div class="jumbotron hardships hardship-2">
+        <h4>Automating MySQL database update every 24 hours</h4>
+        <p class="ol">1. What I want to acheive</p>
+        <p>
+            Update database every 24 hours with data returned from an api for every city. I needed to loop through 
+            each cities, perform api call, update other columns that has same ID. Importantly all this had to be 
+            done in the background therefore it will not interfere with any functions in my app.
+        </p>
+        <p class="ol">2. Uh oh, problem</p>
+        <p>
+            First, it was hard to figure out where to begin. <br>
+         I've tried using MySQL eventscheduler and cursor to 
+            loop through data. Everything was going well until I realized that I needed to call a function that 
+            calls api, cleans the data and return it. I couldn't find a way to call python function within MySQL.
+            Next, I've tried schedule module in python and it seemed like it worked.
+        </p>
+        <pre>
+        import schedule
+        import time
 
+        def update_aqi():
+        """
+        Every 24 hours, update aqi, time column for each city with api_received response
+        """ 
+        query = db.select([Aqi.id, Aqi.City])
+        result = db.engine.execute(query).fetchall()
+        for each_city in result:
+            current_city = each_city[1]
+            current_id = each_city[0]
+            aqi_response = get_aqi(current_city)
+            returned_aqi_data = aqi_response['data']['aqi']
+            returned_time = aqi_response['data']['time']['s']
+    
+            update_this = Aqi.query.filter_by(id=current_id).first()
+            update_this.Aqi = returned_aqi_data
+            update_this.time = returned_time
+            db.session.commit()
+    
+        return f"updated at {time.strftime('%Y/%m/%d, %H:%M%S')}"
+        </pre>
+        <p> Above is function that updates database</p>
+        <pre>
+        def update_db():
+        schdule.every(24).hour.do(update_aqi)
+
+        while True:
+            schedule.run_pending()
+            time.sleep(1)
+        </pre>
+        <p>Then this function adds update_aqi to its job list and 
+            runs everything in job list every 24 hours. Since I wanted 
+            it to run indefinitely while True statement was added.
+        </p>
+        <p>and finally added update_db function inside </p>
+        <pre>
+        @app.route("/nlp/<country>")
+            def text_summarization(country):
+                """
+                For inputted country, grab its paragraphs from wikipedia and summarize it.
+                """
+                summarized_text = text_summarizer(country)
+                update_db()
+                return jsonify(summarized_text)
+        </pre>
+
+        <p class="ol">3. What is happening?</p>
+        As soon as user inputs a country, reading /nlp/ route it ran all its functions and 
+        before it returned data to javascript it had to run update_db(). This was 
+        a problem since it was delaying data return to javascipt, meaning it wasn't
+        working in parallel.
+        <p>
+
+        </p>
+
+        <p class="ol">4. How I fixed it.</p>
+        <p>
+            After more hours of research. Found out about Flask-APScheduler which 
+            is APScheduler for flask just like flask-sqlalchemy. This allowed 
+            me to run multiple jobs in parallel thus fixing my problem.
+        </p>
+        <pre>
+        @scheduler.task('interval', id="update_aqi", hours=23)
+        def update_aqi():
+            """
+            Every 24 hours, update aqi, time column for each city with api_received response
+            """ 
+            query = db.select([Aqi.id, Aqi.City])
+            result = db.engine.execute(query).fetchall()
+            for each_city in result:
+                current_city = each_city[1]
+                current_id = each_city[0]
+                aqi_response = get_aqi(current_city)
+                returned_aqi_data = aqi_response['data']['aqi']
+                returned_time = aqi_response['data']['time']['s']
+        
+                update_this = Aqi.query.filter_by(id=current_id).first()
+                update_this.Aqi = returned_aqi_data
+                update_this.time = returned_time
+                db.session.commit()
+        
+            return f"updated at {time.strftime('%Y/%m/%d, %H:%M%S')}"
+         
+        </pre>
+        <p> Very simple. All I needed to do was create a route that will run 
+            in parallel with my app thus not affecting any part of my app.
+            Task was running job with id="update_aqi" and in 24hours interval. 
+            Note hours start from 0~23 hence 23 => 24.
+        </p>
+        <a href="#" class="to-top">back to top</a>
     </div>
 
     <!-- Hardship #3 -->

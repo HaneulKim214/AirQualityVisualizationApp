@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 .header {
     text-align: center;
 }
@@ -12,8 +16,9 @@
     text-align: center;
 }
 
-.hardship1 h4{
+.hardships h4{
     font-weight: 100;
+    /* text-decoration: underline; */
 }
 
 .to-top{
@@ -25,11 +30,20 @@
     color: rgb(98, 190, 98);
 }
 
-pre{
-    background-color: azure;
+.hardship-1 pre{
+    background-color: #F2EFE4;
     color: rgb(133, 49, 49);
 }
 
 .ol {
     font-weight: 500;
+}
+
+.hardships {
+    background-color: #F2EFE4;
+}
+
+/* hardship-2 styling */
+.hardship-2 pre {
+    color: rgb(96, 124, 53);
 }

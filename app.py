@@ -66,7 +66,6 @@ class Aqi(db.Model):
         return f"Aqi('{self.Countries}', '{self.Cities}', '{self.aqi}')"
 
 # ------------------------------------ Database setup end --------------------------------- #
-
 # Pass list of canadian cities to app.js where it can call api for each cities.
 @app.route("/")
 def index():
@@ -133,10 +132,7 @@ def cities(country):
                 # creating instance of Aqi class(row in MySQL table) and inserting into aqi table
                 insert_to_db = Aqi(country, city, aqi_response['data']['aqi'], o3, so2, no2, pm25, co, lat, lng, time)
                 db.session.add(insert_to_db)
-                try:
-                    db.session.commit()
-                except:
-                    continue
+                db.session.commit()
 
         # this time it will have more  
         query = db.select([Aqi]).where(Aqi.Country == country)
