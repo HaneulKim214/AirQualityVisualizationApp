@@ -24,7 +24,7 @@ scheduler.start()
 
 # ---------------------------------- Database setup -------------------------------- #
 # setting up which database I will use
-app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://root:Gksmf12#@localhost:3306/aqi_db'
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL', '') or 'mysql://root:Gksmf12#@localhost:3306/aqi_db'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # # Creating database instance
