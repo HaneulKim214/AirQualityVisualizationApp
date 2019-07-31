@@ -28,6 +28,7 @@
   <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css">
   <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.Default.css">
 
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
 <body>
@@ -138,13 +139,22 @@
   <div class="map-container" style="margin-bottom: 0;" data-aos="zoom-in" data-aos-duration="3000">
   </div>
 
-  <div class="jumbotron" style="text-align: center;">
-    <!-- calling /hardships -->
-    <a href="{{ url_for('hardships') }}"><b>hardships</b></a>
-
-    <div class="resources">
-      <p>Air quality data: http://aqicn.org/city/beijing/</p>
-      <p>Air pollution info: https://www.who.int/airpollution/en/</p>
+  <div id="contact" class="offset">
+    <footer>
+      <div class="justify-content-center">
+        <div class="text-center">
+          <strong>Contact Info</strong>
+          <p>(647) 335-8834<br>haneulkim214@gmail.com</p>
+          <a href="https://github.com/HaneulKim214" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/in/haneul-kim-8b8720164/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </footer>
+    <div class="hardship-footer" style="text-align: center;">
+      <div><i class="fas fa-arrow-down"></i></div>
+      <!-- calling /hardships -->
+      <a href="{{ url_for('hardships') }}"><b>Main challenges</b></a>
     </div>
   </div>
 

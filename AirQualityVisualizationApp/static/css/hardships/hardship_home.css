@@ -4,6 +4,12 @@ html {
 
 .header {
     text-align: center;
+    margin-top: 10%;
+}
+.header p {
+    color: #656c74;
+    font-size: 20px;
+    font-weight: 500;
 }
 
 .header-list{
@@ -12,8 +18,15 @@ html {
 }
 
 .content{
-    margin: 300px;
+    margin: 230px;
     text-align: center;
+}
+
+.content a {
+    color: black;
+}
+.content a:hover {
+    color: rgb(117, 112, 112);
 }
 
 .hardships h4{

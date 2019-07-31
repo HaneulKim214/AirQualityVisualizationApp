@@ -158,6 +158,45 @@ html {
     text-align: right;
 }
 
+
+/*------------ Footer section------- */
+footer {
+    background-color: white;
+    color: black;
+   }
+   footer a {
+    color: black;
+   }
+   footer a:hover {
+    color: rgb(117, 112, 112);
+   }
+   /* Chaning color of Font Awesome icons */
+   footer .fab {
+    font-size: 1.6rem;
+    margin: 1.2rem 0.5rem;
+   }
+   blockquote .fa-quote-left {
+    color: #1ebba3;
+   }
+.offset:before {
+    display: block;
+    content:"";
+    height: 3.8rem;
+    margin-top: -3.8rem;
+   }
+.hardship-footer a {
+    color: black;
+}
+.hardship-footer a:hover {
+    color: rgb(117, 112, 112);
+}
+
+#contact {
+    margin: 50px;
+}
+
+/* ----------- Footer Ends -------------- */
+
 /* ----------- Media Query for phones & Tablet ------------- */
 @media (max-width: 1115px){
     .infos{
