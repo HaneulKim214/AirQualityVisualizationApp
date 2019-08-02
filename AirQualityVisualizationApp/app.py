@@ -149,7 +149,7 @@ def hardships():
 
 
 # Auto update MySQL DB every 24hours. --> runs parallely.
-@scheduler.task('interval', id="update_aqi", hours=1)
+@scheduler.task('interval', id="update_aqi", hours=23)
 def update_aqi():
     """
     Every 24 hours, update aqi, time column for each city with api_received response
