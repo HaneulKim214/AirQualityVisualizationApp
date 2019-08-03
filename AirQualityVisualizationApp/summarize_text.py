@@ -1,4 +1,4 @@
-from summarize_text_methods import *
+from AirQualityVisualizationApp.summarize_text_methods import *
 
 def text_summarizer(country):
     """
