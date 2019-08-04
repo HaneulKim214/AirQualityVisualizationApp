@@ -17,7 +17,8 @@ country_search.on("click", function(){
             
             console.log(response);
             // run markermap function after 3s.
-            setTimeout(function(){ markermap(response) }, 1000); // this inserts map in to tag that has id="map"
+            markermap(response);
+            // setTimeout(function(){ markermap(response) }, 1000); // this inserts map in to tag that has id="map"
         });
         d3.json(`/nlp/${cleaned_input}`, function(error, summarized_text){
             // empty DOM element before rendering new country
