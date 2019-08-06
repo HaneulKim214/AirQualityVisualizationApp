@@ -10,12 +10,13 @@ country_search.on("click", function(){
     clean_format(user_input_country, function(cleaned_input){
         // two api calls: 1. for marker map  2. for nlp
         d3.json(`/cities/${cleaned_input}`, function(error, response){
+            console.log(response);
+            console.log(error);
             map = d3.select(".map-container")
             map.selectAll("div").remove();
             // create div with id=map inside .map-container before we input map inside of it.
             CreateMapTag();
             
-            console.log(response);
             // run markermap function after 1s
             setTimeout(function(){ markermap(response) }, 1000); // this inserts map in to tag that has id="map"
         });
@@ -49,7 +50,7 @@ function clean_format(user_input_country, callback){
         }
         cleaned_input = splitted.join(" ")
     }
-
+    console.log(cleaned_input);
     // after above step, run call back function()
     callback(cleaned_input);
 }
