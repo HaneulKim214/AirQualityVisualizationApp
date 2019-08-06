@@ -12,7 +12,6 @@ country_search.on("click", function(){
         d3.json(`/cities/${cleaned_input}`)
             .then(function(response){
             console.log(response);
-            console.log(error);
             map = d3.select(".map-container")
             map.selectAll("div").remove();
             // create div with id=map inside .map-container before we input map inside of it.
