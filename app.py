@@ -12,8 +12,8 @@ from sqlalchemy import create_engine, func
 import time
 
 #my dependencies
-from AirQualityVisualizationApp.air_quality_api import get_aqi
-from AirQualityVisualizationApp.summarize_text import *
+from air_quality_api import get_aqi
+from summarize_text import *
 
 
 

@@ -1,1 +1,1 @@
-web: gunicorn AirQualityVisualizationApp.app:app
+web: gunicorn app:app

@@ -1,1 +1,0 @@
-FLASK_APP=AirQualityVisualizationApp/app.py flask run
