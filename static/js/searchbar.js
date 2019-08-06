@@ -9,7 +9,8 @@ country_search.on("click", function(){
     // this runs clean_format function with user_input then runs callback func.
     clean_format(user_input_country, function(cleaned_input){
         // two api calls: 1. for marker map  2. for nlp
-        d3.json(`/cities/${cleaned_input}`, function(error, response){
+        d3.json(`/cities/${cleaned_input}`)
+            .then(function(response){
             console.log(response);
             console.log(error);
             map = d3.select(".map-container")
@@ -20,7 +21,8 @@ country_search.on("click", function(){
             // run markermap function after 1s
             setTimeout(function(){ markermap(response) }, 1000); // this inserts map in to tag that has id="map"
         });
-        d3.json(`/nlp/${cleaned_input}`, function(error, summarized_text){
+        d3.json(`/nlp/${cleaned_input}`)
+            .then(function(summarized_text){
             // empty DOM element before rendering new country
             div = d3.select(".text-summarize");
             div.selectAll("p").remove();
