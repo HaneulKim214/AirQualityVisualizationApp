@@ -167,8 +167,8 @@ def update_aqi():
         update_this.Aqi = returned_aqi_data
         update_this.time = returned_time
         db.session.commit()
-
-    return f"updated at {time.strftime('%Y/%m/%d, %H:%M%S')}"
+    pass
+    # return f"updated at {time.strftime('%Y/%m/%d, %H:%M%S')}"
 
 
 if __name__ == "__main__":

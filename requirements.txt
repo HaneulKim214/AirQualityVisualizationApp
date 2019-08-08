@@ -23,6 +23,7 @@ pandocfilters==1.4.2
 parso==0.3.1
 pep8==1.7.1
 PyMySQL==0.9.3
+psycopg2==2.8.3
 QtAwesome==0.5.7
 qtconsole==4.4.3
 QtPy==1.7.0
