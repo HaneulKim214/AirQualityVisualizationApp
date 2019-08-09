@@ -1,4 +1,4 @@
-from .app import db
+from app import db
 
 # SQLAlchemy represents db structure as a class(Model)
 # Creating table. class name = table name

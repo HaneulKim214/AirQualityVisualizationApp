@@ -31,7 +31,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
 # . means relative import => from current directory.
-from .models import Aqi
+from models import Aqi
 
 # ------------------------------------ Database setup end --------------------------------- #
 @app.before_first_request
