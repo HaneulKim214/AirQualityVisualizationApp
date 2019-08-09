@@ -30,42 +30,14 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 # # Creating database instance
 db = SQLAlchemy(app)
 
-# SQLAlchemy represents db structure as a class(Model)
-# Creating table. class name = table name
-class Aqi(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    Country = db.Column(db.String(30))
-    City = db.Column(db.String(50))
-    Aqi = db.Column(db.String(10))
-
-    o3 = db.Column(db.Float)
-    so2 = db.Column(db.Float)
-    no2 = db.Column(db.Float)
-    pm25 = db.Column(db.Float)
-    co = db.Column(db.Float)
-
-    lat = db.Column(db.Float)
-    lng = db.Column(db.Float)
-    time = db.Column(db.DateTime)
-
-    def __init__(self, Country, City, Aqi,o3, so2, no2, pm25, co, lat, lng, time):
-        self.Country = Country
-        self.City = City
-        self.Aqi = Aqi
-        self.o3 = o3
-        self.so2 = so2
-        self.no2 = no2
-        self.pm25 = pm25
-        self.co = co
-        self.lat = lat
-        self.lng = lng
-        self.time = time
-
-    # ????????????? declare how query is outputted.
-    def __repr__(self):
-        return f"Aqi('{self.Countries}', '{self.Cities}', '{self.aqi}')"
+# . means relative import => from current directory.
+from .models import Aqi
 
 # ------------------------------------ Database setup end --------------------------------- #
+@app.before_first_request
+def setup():
+    db.create_all()
+
 # Pass list of canadian cities to app.js where it can call api for each cities.
 @app.route("/")
 def index():
