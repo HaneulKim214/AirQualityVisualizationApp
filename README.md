@@ -1,6 +1,7 @@
 # AirQualityVisualizationApp
+![gif](static/images/projects/gifs/airyouokay.gif)
 
-## Project Status: On-going
+## Project Status: Finished
 
 **Goal:** 
 - Using real-world, real-time air quality data from around the world I will plot on a map each city's current air quality index which will be automatically updated every 6 hours within the database.
