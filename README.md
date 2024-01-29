@@ -1,5 +1,5 @@
 # AirQualityVisualizationApp
-![gif](static/images/projects/gifs/airyouokay.gif)
+![gif](static/images/airyouokay.gif)
 
 ## Project Status: Finished
 
